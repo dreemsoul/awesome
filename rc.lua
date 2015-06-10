@@ -105,7 +105,7 @@ myawesomemenu = {
    { "restart", awesome.restart },
    { "quit", awesome.quit }
 }
-
+-- web apps menu
 mywebmenu = {
    { "Browser", "firefox" },
    { "Email", "urxvt -name mutt -title mutt -e tmux new mutt" },
@@ -113,18 +113,18 @@ mywebmenu = {
    { "VOIP", "mumble" },
    { "IRC", "urxvt -name weechat -title weechat -e weechat" }
 }
-
+-- media apps menu
 mymediamenu = {
 	{ "MP3", "urxvt -name moc -title moc -e tmux new mocp" },
 	{ "OpenMW", "openmw" },
 	{ "MUD", "urxvt -name kbtin -title kbtin -e tmux new kbtin" },
 	{ "Steam", "steam" }
 }
-
+-- development apps menu
 mydevmenu = {
 	{ "Office", "libreoffice" }
 }
-
+-- util apps menu
 myutilmenu = {
 	{ "Term" , "urxvt" },
 	{ "Files", "urxvt -e ranger" },
