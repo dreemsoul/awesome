@@ -108,16 +108,16 @@ myawesomemenu = {
 
 mywebmenu = {
    { "Browser", "firefox" },
-   { "Email", "urxvt -e tmux new mutt" },
+   { "Email", "urxvt -name mutt -title mutt -e tmux new mutt" },
    { "P2P", "nicotine" },
    { "VOIP", "mumble" },
-   { "IRC", "urxvt -e weechat" }
+   { "IRC", "urxvt -name weechat -title weechat -e weechat" }
 }
 
 mymediamenu = {
-	{ "MP3", "urxvt -e tmux new mocp" },
+	{ "MP3", "urxvt -name moc -title moc -e tmux new mocp" },
 	{ "OpenMW", "openmw" },
-	{ "MUD", "urxvt -e tmux new kbtin" },
+	{ "MUD", "urxvt -name kbtin -title kbtin -e tmux new kbtin" },
 	{ "Steam", "steam" }
 }
 
@@ -477,6 +477,8 @@ awful.rules.rules = {
       properties = { tag = tags[1][1] } },
     { rule = { instance = "weechat" },
       properties = { tag = tags[1][2] } },
+    { rule = { instance = "kbtin" },
+      properties = { tag = tags[1][6] } },
     { rule = { instance = "moc" },
       properties = { tag = tags[1][4] } },
 }
