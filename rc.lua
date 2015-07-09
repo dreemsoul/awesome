@@ -40,7 +40,7 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init("/usr/share/awesome/themes/oreo/theme.lua")
+beautiful.init("/usr/share/awesome/themes/felix/theme.lua")
 
 -- Load the theme
 --config.load()
@@ -118,6 +118,7 @@ mymediamenu = {
 	{ "MP3", "urxvt -name moc -title moc -e tmux new mocp" },
 	{ "OpenMW", "openmw" },
 	{ "MUD", "urxvt -name kbtin -title kbtin -e tmux new kbtin" },
+	{ "PSX", "pcsxr" },
 	{ "Steam", "steam" }
 }
 -- development apps menu
@@ -145,6 +146,10 @@ mylauncher = awful.widget.launcher({ image = "/home/morningstar/Pictures/Icons/a
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
 -- }}}
 
+-- Battery Widget
+batwidget = wibox.widget.textbox()
+vicious.register(batwidget, vicious.widgets.bat, " Pwr: $1$2 ", 32, "BAT0")
+
 -- Pacman Widget
 pacwidget = wibox.widget.textbox()
 
@@ -168,7 +173,7 @@ vicious.register(pacwidget, vicious.widgets.pkg,
                     return "Updates: " .. i .. " "
 
                 
-		end , 900, "Arch")
+		end , 450, "Arch")
 
 -- {{{ Wibox
 -- Create a textclock widget
@@ -253,6 +258,7 @@ for s = 1, screen.count() do
     -- Widgets that are aligned to the right
     local right_layout = wibox.layout.fixed.horizontal()
     right_layout:add(pacwidget)
+    right_layout:add(batwidget)
     if s == 1 then right_layout:add(wibox.widget.systray()) end
     right_layout:add(mytextclock)
     right_layout:add(mylayoutbox[s])
@@ -323,10 +329,11 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Control"  }, "s"     , function () awful.util.spawn("steam"                         ) end),
     awful.key({ modkey, "Control"  }, "k"     , function () awful.util.spawn("mumble"                        ) end),
     awful.key({ modkey, "Control"  }, "j"     , function () awful.util.spawn("nicotine"                      ) end),
-    
+    awful.key({ modkey, "Control"  }, "p"     , function () awful.util.spawn("pcsxr"                         ) end),
+
     -- Dmenu
 
-    awful.key({ modkey,            }, "d"     , function () awful.util.spawn("dmenu_run -b -fn 'Droid Sans Mono for Powerline-8' -nb '#111111' -sb '#111111' -sf '#252e2c' -nf '#727272' "      ) end),
+    awful.key({ modkey,            }, "d"     , function () awful.util.spawn("dmenu_run -b -fn 'Droid Sans Mono for Powerline-8' -nb '#e7e7e7' -sb '#e7e7e7' -sf '#0e0e0e' -nf '#383434' "      ) end),
     
     -- Treesome keys
     
@@ -457,10 +464,14 @@ awful.rules.rules = {
       properties = { floating = true } },
     { rule = { class = "Steam" },
       properties = { floating = true } },
+    { rule = { class = "Pcsxr" },
+      properties = { floating = true } },
 
       -- Set Applications to run on specfic tags
     { rule = { class = "Firefox" },
       properties = { tag = tags[1][1] } },
+    { rule = { class = "Pcsxr" },
+      properties = { tag = tags[1][6] } },
     { rule = { class = "MPlayer" },
       properties = { tag = tags[1][7] } },
     { rule = { class = "Steam" },
